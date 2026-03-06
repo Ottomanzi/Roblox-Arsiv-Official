@@ -1,81 +1,84 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox-Arşiv</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        main {
-            padding: 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
-        .game-card {
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            padding: 10px;
-            margin: 10px 0;
-            background-color: white;
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #2c3e50;
-            color: white;
-            margin-top: 20px;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Roblox Arşiv</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:black;
+    color:white;
+}
+
+/* Neon başlık */
+.title{
+    text-align:center;
+    font-size:80px;
+    margin-top:40vh;
+    animation: neonBlink 2s infinite;
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+}
+
+@keyframes neonBlink{
+    0%,100%{opacity:1;}
+    50%{opacity:0.6;}
+}
+
+/* Scroll alanı */
+.container{
+    margin-top:60vh;
+    padding:40px;
+}
+
+/* Foto grid */
+.grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    gap:15px;
+}
+
+.box{
+    border:1px solid #ff0000;
+    padding:10px;
+    border-radius:10px;
+    text-align:center;
+    background:#0a0a0a;
+}
+
+input{
+    width:100%;
+    margin-top:10px;
+}
+
+</style>
 </head>
+
 <body>
-    <header>
-        <h1>Roblox-Arşiv</h1>
-        <nav>
-            <a href="#">Ana Sayfa</a>
-            <a href="#">Oyunlar</a>
-            <a href="#">Hakkında</a>
-            <a href="#">İletişim</a>
-        </nav>
-    </header>
 
-    <main>
-        <h2>Popüler Oyunlar</h2>
-        <div class="game-card">
-            <h3>Oyun 1</h3>
-            <p>Kısa açıklama buraya gelecek.</p>
-        </div>
-        <div class="game-card">
-            <h3>Oyun 2</h3>
-            <p>Kısa açıklama buraya gelecek.</p>
-        </div>
-        <div class="game-card">
-            <h3>Oyun 3</h3>
-            <p>Kısa açıklama buraya gelecek.</p>
-        </div>
-    </main>
+<div class="title">Roblox Arşiv</div>
 
-    <footer>
-        &copy; 2026 Roblox-Arşiv | Tüm Hakları Saklıdır
-    </footer>
+<div class="container">
+
+<h2 style="text-align:center">Fotoğraf Yükleme Alanı</h2>
+
+<div class="grid">
+
+<script>
+for(let i=1;i<=100;i++){
+    document.write(`
+    <div class="box">
+        <div>${i}</div>
+        <input type="file" accept="image/*">
+    </div>
+    `);
+}
+</script>
+
+</div>
+</div>
+
 </body>
 </html>
