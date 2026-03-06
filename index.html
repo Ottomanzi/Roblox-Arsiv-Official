@@ -2,98 +2,124 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>Roblox Arşiv GOD MODE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roblox Arşiv</title>
 
 <style>
 
+/* Reset */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
 body{
-    margin:0;
-    background:black;
-    color:white;
-    font-family:system-ui;
-    overflow-x:hidden;
+background:#020202;
+color:white;
+font-family:system-ui;
+overflow-x:hidden;
 }
 
-/* Loader */
-
-#loader{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:black;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:60px;
-    z-index:9999;
-    animation:fadeOut 2s forwards;
-    animation-delay:2s;
+/* Background Stars */
+.stars{
+position:fixed;
+width:2px;
+height:2px;
+background:white;
+box-shadow:
+50px 30px white,
+200px 400px white,
+600px 120px white,
+900px 500px white,
+1200px 80px white;
+animation:starsMove 40s linear infinite;
 }
 
-@keyframes fadeOut{
-    to{opacity:0; visibility:hidden;}
+@keyframes starsMove{
+from{transform:translateY(0);}
+to{transform:translateY(-1000px);}
+}
+
+/* Navbar */
+nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+padding:25px 80px;
+backdrop-filter:blur(15px);
+z-index:1000;
+}
+
+.logo{
+font-size:30px;
+color:red;
+font-weight:bold;
+}
+
+.menu a{
+color:white;
+margin-left:30px;
+text-decoration:none;
+transition:.3s;
+}
+
+.menu a:hover{
+color:red;
 }
 
 /* Hero */
-
 .hero{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
 }
 
 .hero h1{
-    font-size:140px;
-    text-shadow:
-    0 0 30px red,
-    0 0 60px darkred;
+font-size:110px;
+color:red;
+text-shadow:0 0 40px darkred;
+}
+
+.hero p{
+opacity:.8;
+margin-top:20px;
 }
 
 /* Cards */
-
 .grid{
-    padding:200px 10%;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
-    gap:50px;
+padding:150px 10%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:50px;
 }
 
 .card{
-    background:rgba(0,0,0,.6);
-    border:1px solid red;
-    padding:50px;
-    border-radius:40px;
-    backdrop-filter:blur(20px);
-    transition:.6s;
+background:rgba(0,0,0,.6);
+border:1px solid red;
+padding:50px;
+border-radius:30px;
+backdrop-filter:blur(20px);
+transition:.5s;
 }
 
 .card:hover{
-    transform:translateY(-25px) scale(1.08);
-    box-shadow:0 0 80px red;
+transform:translateY(-20px) scale(1.05);
+box-shadow:0 0 60px red;
 }
 
-/* Particle */
-
-.particle{
-    position:fixed;
-    width:2px;
-    height:2px;
-    background:white;
-    border-radius:50%;
-}
-
-/* Mouse light */
-
-#light{
-    position:fixed;
-    width:400px;
-    height:400px;
-    background:radial-gradient(circle,rgba(255,0,0,.25),transparent 70%);
-    pointer-events:none;
-    transform:translate(-50%,-50%);
+/* Footer */
+footer{
+text-align:center;
+padding:60px;
+border-top:1px solid red;
+margin-top:120px;
 }
 
 </style>
@@ -101,56 +127,52 @@ body{
 
 <body>
 
-<div id="loader">Roblox Arşiv</div>
-<div id="light"></div>
+<div class="stars"></div>
+
+<nav>
+<div class="logo">Roblox Arşiv</div>
+
+<div class="menu">
+<a href="#">Ana</a>
+<a href="#archive">Arşiv</a>
+<a href="#about">Hakkında</a>
+</div>
+</nav>
 
 <section class="hero">
 <h1>Roblox Arşiv</h1>
-<p>GOD MODE Archive System</p>
+<p>Modern arşiv platformu</p>
 </section>
 
-<div class="grid">
+<section id="archive" class="grid">
 
 <div class="card">
-<h2>Archive Core</h2>
-<p>Premium archive technology.</p>
-</div>
-
-<div class="card">
-<h2>Security Layer</h2>
-<p>Static GOD MODE frontend engine.</p>
+<h2>Arşiv 1</h2>
+<p>Arşiv içeriği buraya gelecek.</p>
 </div>
 
 <div class="card">
-<h2>Future System</h2>
-<p>Next generation archive UI.</p>
+<h2>Arşiv 2</h2>
+<p>Arşiv içeriği buraya gelecek.</p>
 </div>
 
+<div class="card">
+<h2>Arşiv 3</h2>
+<p>Arşiv içeriği buraya gelecek.</p>
 </div>
 
-<script>
+</section>
 
-/* Mouse Light */
+<section id="about" class="grid">
+<div class="card">
+<h2>Roblox Arşivleri</h2>
+<p>Bu site, Roblox oyunları ve içeriklerini arşivlemek için hazırlanmıştır.</p>
+</div>
+</section>
 
-document.addEventListener("mousemove",e=>{
-    let light=document.getElementById("light");
-    light.style.left=e.clientX+"px";
-    light.style.top=e.clientY+"px";
-});
-
-/* Particle Engine */
-
-for(let i=0;i<120;i++){
-    let p=document.createElement("div");
-    p.className="particle";
-    p.style.left=Math.random()*100+"vw";
-    p.style.top=Math.random()*100+"vh";
-    p.style.opacity=Math.random();
-    p.style.animationDuration=(10+Math.random()*40)+"s";
-    document.body.appendChild(p);
-}
-
-</script>
+<footer>
+Roblox Arşiv © 2026
+</footer>
 
 </body>
 </html>
