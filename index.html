@@ -2,69 +2,60 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>Roblox Arşiv</title>
+<title>Roblox Arşiv AI</title>
 
 <style>
 
 body{
 margin:0;
-background:black;
+background:#050505;
 color:white;
 font-family:Arial;
 }
 
-/* Navbar */
+/* Header */
 
-nav{
-display:flex;
-justify-content:space-between;
-padding:20px 60px;
+header{
+padding:20px;
 border-bottom:1px solid red;
-}
-
-.logo{
-color:red;
-font-size:28px;
-}
-
-/* Hero */
-
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-}
-
-.hero h1{
-font-size:90px;
+font-size:26px;
 color:red;
 }
 
-/* Chat */
+/* Chat UI */
 
 #chatBox{
 position:fixed;
 bottom:20px;
-right:20px;
-width:280px;
-background:#050505;
+left:20px;
+width:320px;
+background:#0a0a0a;
 border:1px solid red;
-padding:15px;
 border-radius:15px;
+padding:15px;
 }
 
-#aiResponse{
-height:150px;
+#messages{
+height:180px;
 overflow:auto;
 font-size:14px;
 }
 
-#aiInput{
+#input{
 width:100%;
 margin-top:10px;
+padding:8px;
+background:black;
+border:1px solid red;
+color:white;
+}
+
+.user{
+color:#ff5555;
+}
+
+.ai{
+color:#aaa;
 }
 
 </style>
@@ -72,53 +63,98 @@ margin-top:10px;
 
 <body>
 
-<nav>
-<div class="logo">Roblox Arşiv</div>
-</nav>
-
-<section class="hero">
-<h1>Roblox Arşiv</h1>
-<p>Basit AI Chat Sistemi</p>
-</section>
-
-<!-- Chat -->
+<header>Roblox Arşiv AI</header>
 
 <div id="chatBox">
 
-<div id="aiResponse"></div>
+<div id="messages"></div>
 
-<input id="aiInput"
-placeholder="Bir şey yaz..."
->
+<input id="input" placeholder="Bir şey yaz..." />
 
 </div>
 
 <script>
 
-/* Basit AI */
+/* AI Cevap Havuzu */
 
-const input=document.getElementById("aiInput");
-const response=document.getElementById("aiResponse");
+const responses = {
+
+"merhaba":[
+"Merhaba! Sana nasıl yardımcı olabilirim?",
+"Selam! Arşiv platformuna hoş geldin.",
+"Hello!"
+],
+
+"roblox":[
+"Roblox, online oyun platformudur.",
+"Roblox arşiv sistemi içerik saklamak için tasarlandı.",
+"Roblox oyunları hakkında bilgi verebilirim."
+],
+
+"site":[
+"Bu site basit AI destekli arşiv platformudur.",
+"Arşiv içeriklerini burada bulabilirsin."
+],
+
+"nasılsın":[
+"Ben bir yazılım botuyum ama iyiyim!",
+"Çalışıyorum 🙂",
+"Her şey yolunda."
+],
+
+"oyun":[
+"Oyun geliştirme web teknolojileri ile yapılabilir.",
+"Mini GTA tarzı demo da yapabiliriz.",
+"Tarayıcı oyunları HTML + JS ile mümkündür."
+],
+
+"default":[
+"Bunu tam anlayamadım.",
+"Daha açık yazabilir misin?",
+"Başka bir şey sor."
+]
+
+};
+
+const input=document.getElementById("input");
+const messages=document.getElementById("messages");
+
+function getAnswer(text){
+
+text=text.toLowerCase();
+
+for(let key in responses){
+if(text.includes(key)){
+let arr=responses[key];
+return arr[Math.floor(Math.random()*arr.length)];
+}
+}
+
+let def=responses["default"];
+return def[Math.floor(Math.random()*def.length)];
+}
+
+/* Chat */
 
 input.addEventListener("keypress",e=>{
 
 if(e.key==="Enter"){
 
-let text=input.value.toLowerCase();
-let answer="Bunu anlamadım.";
+let userText=input.value;
 
-if(text.includes("roblox")){
-answer="Roblox arşiv sitesine hoş geldin.";
-}
+messages.innerHTML+=`
+<div class="user">Sen: ${userText}</div>
+`;
 
-if(text.includes("site")){
-answer="Bu site arşiv platformudur.";
-}
+let answer=getAnswer(userText);
 
-response.innerHTML+="<br>Sen: "+input.value;
-response.innerHTML+="<br>AI: "+answer;
+messages.innerHTML+=`
+<div class="ai">AI: ${answer}</div>
+`;
 
 input.value="";
+messages.scrollTop=messages.scrollHeight;
+
 }
 
 });
