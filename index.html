@@ -2,55 +2,159 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Roblox Arşiv</title>
 
 <style>
 
-body{
+/* ===== GLOBAL ===== */
+
+*{
     margin:0;
-    font-family: Arial, sans-serif;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
     background:black;
     color:white;
+    font-family:Arial, Helvetica, sans-serif;
+    overflow-x:hidden;
 }
 
-/* Neon başlık */
-.title{
+/* ===== NAVBAR ===== */
+
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    display:flex;
+    justify-content:space-between;
+    padding:20px 60px;
+    backdrop-filter: blur(10px);
+    z-index:1000;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    text-shadow:0 0 10px red;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:red;
+}
+
+/* ===== HERO ===== */
+
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
     text-align:center;
-    font-size:80px;
-    margin-top:40vh;
-    animation: neonBlink 2s infinite;
-    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+    animation: fadeIn 3s;
 }
 
-@keyframes neonBlink{
-    0%,100%{opacity:1;}
-    50%{opacity:0.6;}
+.hero h1{
+    font-size:90px;
+    text-shadow:
+    0 0 10px red,
+    0 0 20px red,
+    0 0 40px darkred;
 }
 
-/* Scroll alanı */
-.container{
-    margin-top:60vh;
-    padding:40px;
+.hero p{
+    margin-top:20px;
+    font-size:22px;
+    opacity:0.8;
 }
 
-/* Foto grid */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(50px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* ===== SECTIONS ===== */
+
+section{
+    padding:120px 10%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:50px;
+    margin-bottom:60px;
+    text-shadow:0 0 10px red;
+}
+
+/* Card System */
+
 .grid{
     display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
-    gap:15px;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
 }
 
-.box{
-    border:1px solid #ff0000;
-    padding:10px;
-    border-radius:10px;
-    text-align:center;
+.card{
     background:#0a0a0a;
+    border:1px solid #ff0000;
+    padding:30px;
+    border-radius:25px;
+    transition:0.4s;
 }
 
-input{
-    width:100%;
-    margin-top:10px;
+.card:hover{
+    transform:translateY(-15px);
+    box-shadow:0 0 30px red;
+}
+
+.card h3{
+    margin-bottom:20px;
+}
+
+/* Footer */
+
+footer{
+    text-align:center;
+    padding:40px;
+    border-top:1px solid red;
+    margin-top:100px;
+}
+
+/* Background Stars */
+
+.stars{
+    position:fixed;
+    width:2px;
+    height:2px;
+    background:white;
+    box-shadow:
+    20px 30px white,
+    200px 80px white,
+    400px 300px white,
+    800px 200px white,
+    1200px 500px white;
+    animation: moveStars 40s linear infinite;
+}
+
+@keyframes moveStars{
+    from{transform:translateY(0);}
+    to{transform:translateY(-1000px);}
 }
 
 </style>
@@ -58,27 +162,69 @@ input{
 
 <body>
 
-<div class="title">Roblox Arşiv</div>
+<div class="stars"></div>
 
-<div class="container">
+<nav>
+<div class="logo">Roblox Arşiv</div>
+<ul>
+<li><a href="#home">Ana Sayfa</a></li>
+<li><a href="#about">Hakkında</a></li>
+<li><a href="#archive">Arşiv</a></li>
+</ul>
+</nav>
 
-<h2 style="text-align:center">Fotoğraf Yükleme Alanı</h2>
+<section class="hero" id="home">
+<h1>Roblox Arşiv</h1>
+<p>En iyi Roblox arşiv platformu</p>
+</section>
+
+<section id="about">
+<div class="section-title">Hakkında</div>
+
+<div class="grid">
+<div class="card">
+<h3>Site Amacı</h3>
+<p>Roblox arşiv içeriklerini modern ve premium tasarım ile sunmak.</p>
+</div>
+
+<div class="card">
+<h3>Güvenlik</h3>
+<p>Site tamamen statik HTML teknolojisi ile çalışır.</p>
+</div>
+
+<div class="card">
+<h3>Performans</h3>
+<p>Ultra hızlı sayfa yüklenme optimizasyonu.</p>
+</div>
+</div>
+</section>
+
+<section id="archive">
+<div class="section-title">Arşiv Bölümü</div>
 
 <div class="grid">
 
-<script>
-for(let i=1;i<=100;i++){
-    document.write(`
-    <div class="box">
-        <div>${i}</div>
-        <input type="file" accept="image/*">
-    </div>
-    `);
-}
-</script>
+<div class="card">
+<h3>Arşiv 1</h3>
+<p>Roblox arşiv içeriği buraya eklenebilir.</p>
+</div>
+
+<div class="card">
+<h3>Arşiv 2</h3>
+<p>Roblox arşiv içeriği buraya eklenebilir.</p>
+</div>
+
+<div class="card">
+<h3>Arşiv 3</h3>
+<p>Roblox arşiv içeriği buraya eklenebilir.</p>
+</div>
 
 </div>
-</div>
+</section>
+
+<footer>
+Roblox Arşiv © 2026
+</footer>
 
 </body>
 </html>
