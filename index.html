@@ -1,135 +1,81 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brigada 33</title>
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-
-body{
-font-family:Arial, Helvetica, sans-serif;
-background:#050505;
-color:white;
-}
-
-.hero{
-height:90vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-background:#000;
-}
-
-.hero h1{
-font-size:80px;
-letter-spacing:6px;
-color:#ff2a2a;
-}
-
-.video-section{
-padding:80px 20px;
-text-align:center;
-}
-
-.video-section iframe{
-width:90%;
-max-width:1000px;
-height:520px;
-border:none;
-border-radius:12px;
-}
-
-/* BIG VERTICAL IMAGES */
-.gallery{
-max-width:900px;
-margin:auto;
-padding:60px 20px;
-display:flex;
-flex-direction:column;
-gap:60px;
-}
-
-.gallery img{
-width:100%;
-border-radius:12px;
-cursor:pointer;
-transition:0.3s;
-}
-
-.gallery img:hover{
-transform:scale(1.02);
-}
-
-/* FULLSCREEN VIEW */
-.lightbox{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.95);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:1000;
-padding:40px;
-}
-
-.lightbox img{
-max-width:95%;
-max-height:95%;
-border-radius:10px;
-}
-
-footer{
-text-align:center;
-padding:40px;
-color:#666;
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox-Arşiv</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        .game-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: white;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #2c3e50;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
 </head>
-
 <body>
+    <header>
+        <h1>Roblox-Arşiv</h1>
+        <nav>
+            <a href="#">Ana Sayfa</a>
+            <a href="#">Oyunlar</a>
+            <a href="#">Hakkında</a>
+            <a href="#">İletişim</a>
+        </nav>
+    </header>
 
-<section class="hero">
-<h1>BRIGADA 33</h1>
-</section>
+    <main>
+        <h2>Popüler Oyunlar</h2>
+        <div class="game-card">
+            <h3>Oyun 1</h3>
+            <p>Kısa açıklama buraya gelecek.</p>
+        </div>
+        <div class="game-card">
+            <h3>Oyun 2</h3>
+            <p>Kısa açıklama buraya gelecek.</p>
+        </div>
+        <div class="game-card">
+            <h3>Oyun 3</h3>
+            <p>Kısa açıklama buraya gelecek.</p>
+        </div>
+    </main>
 
-<section class="video-section">
-<iframe src="https://www.youtube.com/embed/c65CHwQ9VlA" allowfullscreen></iframe>
-</section>
-
-<section class="gallery">
-<img src="foto1.png" onclick="openImg(this)">
-<img src="foto2.png" onclick="openImg(this)">
-<img src="foto3.png" onclick="openImg(this)">
-<img src="foto4.png" onclick="openImg(this)">
-<img src="foto5.png" onclick="openImg(this)">
-</section>
-
-<div class="lightbox" id="lightbox" onclick="closeImg()">
-<img id="lightbox-img">
-</div>
-
-<footer>
-Brigada 33 © 2026
-</footer>
-
-<script>
-function openImg(img){
-const box = document.getElementById('lightbox')
-const big = document.getElementById('lightbox-img')
-
-big.src = img.src
-box.style.display = 'flex'
-}
-
-function closeImg(){
-document.getElementById('lightbox').style.display='none'
-}
-</script>
-
+    <footer>
+        &copy; 2026 Roblox-Arşiv | Tüm Hakları Saklıdır
+    </footer>
 </body>
 </html>
