@@ -3,163 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <title>Roblox Arşiv AI</title>
-
 <style>
-
 body{
 margin:0;
 background:#050505;
-color:white;
-font-family:Arial;
+font-family:Arial, sans-serif;
+overflow:hidden;
 }
-
-/* Header */
-
+#chatContainer{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:#0a0a0a;
+display:flex;
+flex-direction:column;
+}
 header{
 padding:20px;
-border-bottom:1px solid red;
-font-size:26px;
+font-size:28px;
 color:red;
+border-bottom:1px solid #ff0000;
+text-align:center;
 }
-
-/* Chat UI */
-
-#chatBox{
-position:fixed;
-bottom:20px;
-left:20px;
-width:320px;
-background:#0a0a0a;
-border:1px solid red;
-border-radius:15px;
-padding:15px;
-}
-
 #messages{
-height:180px;
-overflow:auto;
-font-size:14px;
-}
-
-#input{
-width:100%;
-margin-top:10px;
-padding:8px;
-background:black;
-border:1px solid red;
+flex:1;
+padding:20px;
+overflow-y:auto;
+font-size:16px;
 color:white;
 }
-
-.user{
-color:#ff5555;
+#input{
+padding:15px;
+width:100%;
+border:none;
+outline:none;
+font-size:16px;
+background:#111;
+color:white;
 }
-
-.ai{
-color:#aaa;
-}
-
+.user{color:#ff5555; margin-bottom:8px;}
+.ai{color:#aaa; margin-bottom:8px;}
 </style>
 </head>
-
 <body>
-
+<div id="chatContainer">
 <header>Roblox Arşiv AI</header>
-
-<div id="chatBox">
-
 <div id="messages"></div>
-
-<input id="input" placeholder="Bir şey yaz..." />
-
+<input id="input" placeholder="Bir şey yaz ve Enter'a bas..." />
 </div>
 
 <script>
-
-/* AI Cevap Havuzu */
-
-const responses = {
-
-"merhaba":[
-"Merhaba! Sana nasıl yardımcı olabilirim?",
-"Selam! Arşiv platformuna hoş geldin.",
-"Hello!"
-],
-
-"roblox":[
-"Roblox, online oyun platformudur.",
-"Roblox arşiv sistemi içerik saklamak için tasarlandı.",
-"Roblox oyunları hakkında bilgi verebilirim."
-],
-
-"site":[
-"Bu site basit AI destekli arşiv platformudur.",
-"Arşiv içeriklerini burada bulabilirsin."
-],
-
-"nasılsın":[
-"Ben bir yazılım botuyum ama iyiyim!",
-"Çalışıyorum 🙂",
-"Her şey yolunda."
-],
-
-"oyun":[
-"Oyun geliştirme web teknolojileri ile yapılabilir.",
-"Mini GTA tarzı demo da yapabiliriz.",
-"Tarayıcı oyunları HTML + JS ile mümkündür."
-],
-
-"default":[
-"Bunu tam anlayamadım.",
-"Daha açık yazabilir misin?",
-"Başka bir şey sor."
-]
-
+// 🔹 Türkçe AI Kelime ve Cevap Havuzu (Genişletilmiş)
+const turkishResponses = {
+"merhaba":["Merhaba! Sana nasıl yardımcı olabilirim?","Selam! Hoş geldin.","İyi günler 🙂"],
+"nasılsın":["Ben bir yazılım botuyum ama iyiyim.","Çalışıyorum ve öğrenmeye devam ediyorum.","Her şey yolunda."],
+"roblox":["Roblox online oyun platformudur.","Roblox arşiv sitesi içerik saklamak için tasarlandı."],
+"oyun":["Oyun geliştirme HTML, JavaScript veya oyun motorları ile yapılabilir.","Tarayıcı oyunları da mümkündür."],
+"site":["Bu site arşiv platformu ve basit AI sohbet sistemidir."],
+"teşekkür":["Rica ederim 🙂","Ne demek, her zaman buradayım."],
+"yardım":["Elbette, ne hakkında yardım istiyorsun?","Sorunu detaylandırabilir misin?"],
+"javascript":["JavaScript ile web oyunları ve AI simülasyonu yapılabilir."],
+"html":["HTML site yapısında temel yapı taşlarını oluşturur."],
+"css":["CSS ile sitenin tasarımını yapabilirsin."],
+"ai":["AI, soruları analiz eder ve mantıklı cevaplar verir."],
+"default":["Bunu tam anlayamadım.","Lütfen biraz daha açık yazar mısın?","Başka şekilde sorabilir misin?"]
 };
 
-const input=document.getElementById("input");
-const messages=document.getElementById("messages");
-
-function getAnswer(text){
-
+// 🔹 Chat Fonksiyonu
+function getTurkishAnswer(text){
 text=text.toLowerCase();
-
-for(let key in responses){
+for(let key in turkishResponses){
 if(text.includes(key)){
-let arr=responses[key];
+let arr=turkishResponses[key];
 return arr[Math.floor(Math.random()*arr.length)];
 }
 }
-
-let def=responses["default"];
+let def=turkishResponses["default"];
 return def[Math.floor(Math.random()*def.length)];
 }
 
-/* Chat */
+// 🔹 Chat Logic
+const input=document.getElementById("input");
+const messages=document.getElementById("messages");
 
 input.addEventListener("keypress",e=>{
-
 if(e.key==="Enter"){
-
-let userText=input.value;
-
-messages.innerHTML+=`
-<div class="user">Sen: ${userText}</div>
-`;
-
-let answer=getAnswer(userText);
-
-messages.innerHTML+=`
-<div class="ai">AI: ${answer}</div>
-`;
-
+let user=input.value;
+messages.innerHTML+=`<div class="user">Sen: ${user}</div>`;
+messages.innerHTML+=`<div class="ai">AI: ${getTurkishAnswer(user)}</div>`;
 input.value="";
 messages.scrollTop=messages.scrollHeight;
-
 }
-
 });
-
 </script>
-
 </body>
 </html>
